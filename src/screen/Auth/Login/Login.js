@@ -23,7 +23,6 @@ const Login = ({navigation}) => {
       <View
         style={{
           flex: 0.3,
-          marginHorizontal: 15,
         }}>
         <AppInput label={'Email'} placeholder={'Enter your email'} />
         <AppInput
@@ -62,6 +61,7 @@ const Login = ({navigation}) => {
           marginTop={180}
         />
         <MobText
+          onPress={() => navigation.navigate('ForgetPassword')}
           textAlign={'center'}
           label={'Forget your password?'}
           color={'#5DB075'}
@@ -73,7 +73,7 @@ const Login = ({navigation}) => {
           width: '100%',
           alignItems: 'center',
           justifyContent: 'flex-end',
-          height: '27%',
+          height: '22%',
         }}>
         <MobText
           label={"Don't have an account?"}

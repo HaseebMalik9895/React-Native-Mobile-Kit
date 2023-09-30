@@ -51,12 +51,8 @@ const Feed = ({navigation}) => {
         style={{
           flex: 1,
           backgroundColor: 'white',
-          marginHorizontal: 15,
         }}>
-          <AppInput
-          borderRadius={40}
-          placeholder={'Search'}/>
-        {/* <MobTextinput placeholder={'Search'} borderRadius={40} /> */}
+        <AppInput borderRadius={40} placeholder={'Search'} />
 
         <FlatList
           data={header}
@@ -68,6 +64,7 @@ const Feed = ({navigation}) => {
                   padding: 3,
                   flexDirection: 'row',
                   alignItems: 'center',
+                  marginHorizontal: 10,
                 }}>
                 <Image
                   source={require('../../../assets/images/person.png')}

@@ -16,16 +16,12 @@ const SignUp = ({navigation}) => {
       }}>
       <AppHeader
         title={'SignUp'}
-        subTitle={'Login'}
         onPress={() => {
           navigation.goBack();
         }}
         backArrow={true}
       />
-      <View
-        style={{
-          marginHorizontal: 15,
-        }}>
+      <View style={{}}>
         <AppInput label={'Name'} placeholder={'Enter your name'} />
         <AppInput label={'Email'} placeholder={'Enter your email'} />
         <AppInput
@@ -64,14 +60,13 @@ const SignUp = ({navigation}) => {
       <View
         style={{
           position: 'absolute',
-          bottom: 24,
+          bottom: 35,
           alignSelf: 'center',
         }}>
         <MobText
           color={'black'}
           fontSize={16}
           label={'Already have an account?'}
-          marginVertical={5}
         />
         <MobText
           onPress={() => navigation.navigate('Login')}

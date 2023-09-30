@@ -8,6 +8,7 @@ const AppInput = ({secureTextEntry, placeholder, label, borderRadius}) => {
       style={{
         maxWidth: '100%',
         marginTop: 5,
+        marginHorizontal: 15,
       }}>
       <Text
         style={{

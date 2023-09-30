@@ -26,9 +26,10 @@ const MobButton = ({
       }}>
       <Text
         style={{
-          fontSize: 16,
+          fontSize: 18,
           // fontWeight: '900',
           color: color ? color : 'white',
+          fontWeight: 'bold',
         }}>
         {label}
       </Text>
