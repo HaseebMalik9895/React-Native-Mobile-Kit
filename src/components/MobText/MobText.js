@@ -29,9 +29,9 @@ const MobText = ({
           marginTop: marginTop,
           marginLeft: marginLeft,
           marginHorizontal: marginHorizontal,
-          marginRight:marginRight,
-          textDecorationLine:textDecorationLine,
-          paddingHorizontal:paddingHorizontal,
+          marginRight: marginRight,
+          textDecorationLine: textDecorationLine,
+          paddingHorizontal: paddingHorizontal,
           // paddingHorizontal: paddingHorizontal,
         }}>
         {label}

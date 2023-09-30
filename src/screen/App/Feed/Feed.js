@@ -1,7 +1,15 @@
-import {View, Text, FlatList, Touchable, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  Touchable,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import React from 'react';
 import MobText from '../../../components/MobText/MobText';
 import MobTextinput from '../../../components/MobTextinput/MobTextinput';
+import AppHeader from '../../../components/AppHeader/AppHeader';
 
 const header = [
   {
@@ -75,90 +83,97 @@ const header = [
 const Feed = ({navigation}) => {
   return (
     <View
-    style={{
-      flex:1,
-      backgroundColor:'white',
-    }}>
-
-      <View
       style={{
         flex: 1,
         backgroundColor: 'white',
-        alignItems: 'center',
-        marginHorizontal:15,
       }}>
+      <AppHeader title={'Feeds'} subTitle={'Filter'} />
       <View
         style={{
-          backgroundColor: 'yellow',
-          marginVertical:20,
-          height: '10%',
-          width: '100%',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          alignItems: 'center',
+          flex: 1,
+          backgroundColor: 'white',
+          marginHorizontal: 15,
         }}>
-        <MobText
-          onPress={() => navigation.navigate('Login')}
-          label={'Back'}
-          fontSize={20}
-          color={'#5DB075'}
-        />
-        <MobText
-          label={'Feed'}
-          fontSize={40}
-          color={'black'}
-          marginHorizontal={80}
-        />
-        <MobText 
-        label={'Filter'} fontSize={20} color={'#5DB075'} />
-      </View>
-      <MobTextinput placeholder={'Search'} borderRadius={40} />
+        {/* <View
+          style={{
+            backgroundColor: 'yellow',
+            marginVertical: 10,
+            height: '7%',
+            width: '100%',
+            flexDirection: 'row',
+            // justifyContent: 'space-around',
+            alignItems: 'center',
+          }}>
+          <View
+            style={{
+              width: '80%',
+              height: '100%',
+              backgroundColor: 'red',
+              alignItems:'center',
+              justifyContent:'flex-end'
+            }}>
+            <MobText
+              label={'Feed'}
+              fontSize={40}
+              color={'black'}
+              // marginHorizontal={80}
+              // marginLeft={100}
+            />
+          </View>
+          <View
+            style={{
+              backgroundColor: 'blue',
+              width: '20%',
+            }}>
+            <MobText label={'Filter'} fontSize={20} color={'#5DB075'} />
+          </View>
+        </View> */}
 
-      <FlatList
-        data={header}
-        style={
-          {
-            // flexGrow: 1,
-          }
-        }
-        renderItem={({item}) => {
-          return (
-            <View
-              style={{
-                backgroundColor:'red',
-                flexDirection: 'row',
-                marginHorizontal: 8,
-                marginVertical: 2,
-                width: '100%',
-                height: 80,
-              }}>
+        <MobTextinput
+          placeholder={'Search'}
+          borderRadius={40}
+          // marginVertical={}
+        />
+
+        <FlatList
+          data={header}
+          renderItem={({item}) => {
+            return (
               <View
                 style={{
-                  height: 65,
-                  borderRadius: 8,
-                  width: '100%',
-                  backgroundColor: 'red',
+                  maxWidth: '100%',
+                  padding: 3,
+                  flexDirection: 'row',
+                  alignItems: 'center',
                 }}>
+                <Image
+                  source={require('../../../assets/images/new.jpg')}
+                  resizeMode={'cover'}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    marginRight: 14,
+                    borderRadius: 10,
+                  }}
+                />
                 <TouchableOpacity
                   style={{
-                    backgroundColor: 'yellow',
-                    height: 80,
-                    width: '100%',
-                    paddingHorizontal: 15,
+                    width: '84%',
                     borderColor: 'grey',
                     borderBottomWidth: 0.5,
-                    // marginLeft: 75,
+                    paddingVertical: 15,
                   }}>
                   <View
                     style={{
-                      backgroundColor:'green',
                       flexDirection: 'row',
                       justifyContent: 'space-between',
+                      maxWidth: '98%',
+                      marginBottom: 5,
                     }}>
                     <MobText
                       label={item.name}
-                      fontSize={16}
-                      fontWeight={'bold'}
+                      fontSize={18}
+                      fontWeight={'900'}
                       color={'black'}
                     />
                     <MobText
@@ -172,18 +187,16 @@ const Feed = ({navigation}) => {
                   <MobText
                     label={item.detail}
                     fontSize={14}
-                    // fontWeight={'bold'}
+                    fontWeight={'700'}
                     color={'black'}
                   />
                 </TouchableOpacity>
               </View>
-            </View>
-          );
-        }}
-      />
+            );
+          }}
+        />
+      </View>
     </View>
-    </View>
-    
   );
 };
 

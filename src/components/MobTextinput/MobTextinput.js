@@ -39,7 +39,7 @@ const MobTextinput = ({
         fontSize: fontSize ? fontSize : 16,
         borderRadius: borderRadius ? borderRadius : 10,
         paddingHorizontal: paddingHorizontal ? paddingHorizontal : 15,
-        marginVertical: marginVertical ? marginVertical : 10,
+        marginVertical: marginVertical ? marginVertical : 5,
         borderColor: borderColor ? borderColor : '#BDBDBD',
         borderWidth: borderWidth ? borderWidth : 0.5,
       }}

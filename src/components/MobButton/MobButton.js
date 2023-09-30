@@ -17,11 +17,12 @@ const MobButton = ({
         backgroundColor: backgroundColor ? backgroundColor : '#5DB075',
         borderRadius: 100,
         width: '90%',
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center',
         marginVertical: marginVertical ? marginVertical : 20,
         marginTop: marginTop,
-        height:50,
+        height: 50,
+        alignSelf: 'center',
       }}>
       <Text
         style={{
