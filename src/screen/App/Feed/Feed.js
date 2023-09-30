@@ -1,15 +1,9 @@
-import {
-  View,
-  Text,
-  FlatList,
-  Touchable,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {View, FlatList, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import MobText from '../../../components/MobText/MobText';
 import MobTextinput from '../../../components/MobTextinput/MobTextinput';
 import AppHeader from '../../../components/AppHeader/AppHeader';
+import AppInput from '../../../components/AppInput/AppInput';
 
 const header = [
   {
@@ -44,41 +38,6 @@ const header = [
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
     image: '',
   },
-  // {
-  //   id: 4,
-  //   name: 'Header',
-  //   image: '',
-  // },
-  // {
-  //   id: 5,
-  //   name: 'Header',
-  //   image: '',
-  // },
-  // {
-  //   id: 6,
-  //   name: 'Header',
-  //   image: '',
-  // },
-  // {
-  //   id: 7,
-  //   name: 'Header',
-  //   image: '',
-  // },
-  // {
-  //   id: 8,
-  //   name: 'Header',
-  //   image: '',
-  // },
-  // {
-  //   id: 9,
-  //   name: 'Header',
-  //   image: '',
-  // },
-  // {
-  //   id: 10,
-  //   name: 'Header',
-  //   image: '',
-  // },
 ];
 const Feed = ({navigation}) => {
   return (
@@ -94,46 +53,10 @@ const Feed = ({navigation}) => {
           backgroundColor: 'white',
           marginHorizontal: 15,
         }}>
-        {/* <View
-          style={{
-            backgroundColor: 'yellow',
-            marginVertical: 10,
-            height: '7%',
-            width: '100%',
-            flexDirection: 'row',
-            // justifyContent: 'space-around',
-            alignItems: 'center',
-          }}>
-          <View
-            style={{
-              width: '80%',
-              height: '100%',
-              backgroundColor: 'red',
-              alignItems:'center',
-              justifyContent:'flex-end'
-            }}>
-            <MobText
-              label={'Feed'}
-              fontSize={40}
-              color={'black'}
-              // marginHorizontal={80}
-              // marginLeft={100}
-            />
-          </View>
-          <View
-            style={{
-              backgroundColor: 'blue',
-              width: '20%',
-            }}>
-            <MobText label={'Filter'} fontSize={20} color={'#5DB075'} />
-          </View>
-        </View> */}
-
-        <MobTextinput
-          placeholder={'Search'}
+          <AppInput
           borderRadius={40}
-          // marginVertical={}
-        />
+          placeholder={'Search'}/>
+        {/* <MobTextinput placeholder={'Search'} borderRadius={40} /> */}
 
         <FlatList
           data={header}
@@ -147,7 +70,7 @@ const Feed = ({navigation}) => {
                   alignItems: 'center',
                 }}>
                 <Image
-                  source={require('../../../assets/images/new.jpg')}
+                  source={require('../../../assets/images/person.png')}
                   resizeMode={'cover'}
                   style={{
                     width: 50,

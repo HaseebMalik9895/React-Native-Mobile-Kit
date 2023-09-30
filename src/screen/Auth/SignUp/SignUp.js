@@ -5,6 +5,7 @@ import MobTextinput from '../../../components/MobTextinput/MobTextinput';
 import MobButton from '../../../components/MobButton/MobButton';
 import {Checkbox} from 'react-native-paper';
 import AppHeader from '../../../components/AppHeader/AppHeader';
+import AppInput from '../../../components/AppInput/AppInput';
 const SignUp = ({navigation}) => {
   const [checked, setChecked] = useState(false);
   return (
@@ -23,24 +24,14 @@ const SignUp = ({navigation}) => {
       />
       <View
         style={{
-          alignItems: 'center',
           marginHorizontal: 15,
-          // justifyContent:'center',
         }}>
-        <MobTextinput
-          //   backgroundColor={'red'}
-          placeholder={'Name'}
-          label={'Name'}
-        />
-        <MobTextinput
-          //   backgroundColor={'blue'}
-          placeholder={'Email'}
-          label={'Email'}
-        />
-        <MobTextinput
-          //   backgroundColor={'yellow'}
-          placeholder={'Password'}
+        <AppInput label={'Name'} placeholder={'Enter your name'} />
+        <AppInput label={'Email'} placeholder={'Enter your email'} />
+        <AppInput
           label={'Password'}
+          placeholder={'Enter your password'}
+          secureTextEntry={true}
         />
       </View>
       <View
@@ -62,6 +53,7 @@ const SignUp = ({navigation}) => {
           color={'green'}
         />
         <MobText
+          fontWeight={'900'}
           label={
             'I would like to receive your newsletter and other promotional information.'
           }
