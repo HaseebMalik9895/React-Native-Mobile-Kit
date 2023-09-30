@@ -137,7 +137,7 @@ const Feed = ({navigation}) => {
                   height: 65,
                   borderRadius: 8,
                   width: '100%',
-                  backgroundColor: 'green',
+                  backgroundColor: 'red',
                 }}>
                 <TouchableOpacity
                   style={{
