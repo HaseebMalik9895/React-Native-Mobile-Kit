@@ -24,8 +24,10 @@ const Login = ({navigation}) => {
         style={{
           flex: 0.3,
         }}>
-        <AppInput label={'Email'} placeholder={'Enter your email'} />
         <AppInput
+        flexDirection={'row'} label={'Email'} placeholder={'Enter your email'} />
+        <AppInput
+        flexDirection={'row'}
           label={'Password'}
           placeholder={'Enter your password'}
           secureTextEntry={true}

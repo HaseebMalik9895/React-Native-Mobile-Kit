@@ -1,7 +1,14 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const AppHeader = ({title, subTitle, icon, onPress, backArrow}) => {
+const AppHeader = ({
+  title,
+  filterPress,
+  subTitle,
+  icon,
+  onPress,
+  backArrow,
+}) => {
   return (
     <View
       style={{
@@ -43,6 +50,7 @@ const AppHeader = ({title, subTitle, icon, onPress, backArrow}) => {
           justifyContent: 'center',
         }}>
         <Text
+          onPress={filterPress}
           style={{
             fontSize: 30,
             color: '#000',

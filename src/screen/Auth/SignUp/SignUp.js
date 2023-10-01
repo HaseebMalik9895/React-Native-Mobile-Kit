@@ -22,12 +22,14 @@ const SignUp = ({navigation}) => {
         backArrow={true}
       />
       <View style={{}}>
-        <AppInput label={'Name'} placeholder={'Enter your name'} />
-        <AppInput label={'Email'} placeholder={'Enter your email'} />
+        <AppInput
+        flexDirection={'row'} label={'Name'} placeholder={'Enter your name'} />
+        <AppInput flexDirection={'row'} label={'Email'} placeholder={'Enter your email'} />
         <AppInput
           label={'Password'}
           placeholder={'Enter your password'}
           secureTextEntry={true}
+          flexDirection={'row'}
         />
       </View>
       <View

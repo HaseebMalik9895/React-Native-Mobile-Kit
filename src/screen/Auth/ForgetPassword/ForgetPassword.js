@@ -1,10 +1,15 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React,{useState}  from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import AppInput from '../../../components/AppInput/AppInput';
 import MobButton from '../../../components/MobButton/MobButton';
-
-const ForgetPassword = ({navigation}) => {
+import {useNavigation} from '@react-navigation/native';
+const ForgetPassword = () => {
+    const navigation = useNavigation();
+    const OTPVerification = () => {
+      navigation.navigate('OTPVerification', { value });
+    };
+const [value , setValue] = useState('')
   return (
     <View
       style={{
@@ -46,9 +51,14 @@ const ForgetPassword = ({navigation}) => {
         style={{
           flex: 0.95,
         }}>
-        <AppInput label={'Email'} placeholder={'Enter your email'} />
+        <AppInput
+        value={value}
+        onChangeText={text => setValue(text)}
+        label={'Email'} placeholder={'Enter your email'} />
       </View>
-      <MobButton label={'Reset Password'} />
+      <MobButton 
+      onPress={OTPVerification}
+      label={'Reset Password'} />
     </View>
   );
 };

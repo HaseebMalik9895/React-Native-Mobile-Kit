@@ -46,7 +46,10 @@ const Feed = ({navigation}) => {
         flex: 1,
         backgroundColor: 'white',
       }}>
-      <AppHeader title={'Feeds'} subTitle={'Filter'} />
+      <AppHeader
+        title={'Feeds'}
+        subTitle={'Filter'}
+      />
       <View
         style={{
           flex: 1,
