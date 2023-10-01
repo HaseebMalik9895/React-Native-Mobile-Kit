@@ -3,12 +3,13 @@ import React from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import AppInput from '../../../components/AppInput/AppInput';
 import {useNavigation} from '@react-navigation/native';
-import { useRoute } from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
+import MobButton from '../../../components/MobButton/MobButton';
 
 const OTPVerification = () => {
-    const navigation = useNavigation();
-    const route = useRoute();
-    const { value } = route.params;
+  const navigation = useNavigation();
+  const route = useRoute();
+  const {value} = route.params;
   return (
     <View
       style={{
@@ -46,7 +47,7 @@ const OTPVerification = () => {
             fontWeight: 800,
             color: 'black',
           }}>
-          OTP Verification 
+          OTP Verification
         </Text>
         <Text
           style={{
@@ -54,15 +55,13 @@ const OTPVerification = () => {
             fontWeight: 800,
             color: 'grey',
           }}>
-          Enter OTP code send to {value}
+          Enter OTP code send to {value}?
         </Text>
       </View>
       <View
         style={{
-          height: '10%',
-          width: '100%',
+          flex: 0.95,
           justifyContent: 'center',
-          alignItems: 'center',
           flexDirection: 'row',
         }}>
         <AppInput
@@ -124,6 +123,10 @@ const OTPVerification = () => {
           }}
         />
       </View>
+      <MobButton
+        onPress={() => navigation.navigate('ChangePassword')}
+        label={'Reset password'}
+      />
     </View>
   );
 };

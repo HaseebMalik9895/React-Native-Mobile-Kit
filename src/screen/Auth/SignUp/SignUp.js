@@ -6,8 +6,12 @@ import MobButton from '../../../components/MobButton/MobButton';
 import {Checkbox} from 'react-native-paper';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import AppInput from '../../../components/AppInput/AppInput';
+import Modal from 'react-native-modal';
+import Icon from 'react-native-vector-icons/Feather';
+
 const SignUp = ({navigation}) => {
   const [checked, setChecked] = useState(false);
+  const [modal, setModal] = useState(false);
   return (
     <View
       style={{
@@ -23,8 +27,15 @@ const SignUp = ({navigation}) => {
       />
       <View style={{}}>
         <AppInput
-        flexDirection={'row'} label={'Name'} placeholder={'Enter your name'} />
-        <AppInput flexDirection={'row'} label={'Email'} placeholder={'Enter your email'} />
+          flexDirection={'row'}
+          label={'Name'}
+          placeholder={'Enter your name'}
+        />
+        <AppInput
+          flexDirection={'row'}
+          label={'Email'}
+          placeholder={'Enter your email'}
+        />
         <AppInput
           label={'Password'}
           placeholder={'Enter your password'}
@@ -57,7 +68,13 @@ const SignUp = ({navigation}) => {
           }
         />
       </View>
-      <MobButton label={'Sign Up'} backgroundColor={'#5DB075'} />
+      <MobButton
+        onPress={() => {
+          setModal(true);
+        }}
+        label={'Sign Up'}
+        backgroundColor={'#5DB075'}
+      />
 
       <View
         style={{
@@ -76,11 +93,46 @@ const SignUp = ({navigation}) => {
           label={'Log in'}
           color={'#5DB075'}
           fontWeight={'bold'}
-          fontSize={16}
+          fontSize={18}
           paddingHorizontal={30}
           textAlign={'center'}
         />
       </View>
+      <Modal
+        animationIn={'slideInUp'}
+        animationOut={'slideOutUp'}
+        isVisible={modal}>
+        <AppHeader
+          backArrow={true}
+          onPress={() => {
+            setModal(false);
+          }}
+        />
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <View
+            style={{
+              height: 427,
+              width: 343,
+              backgroundColor: '#5DB075',
+              borderRadius: 20,
+              alignItems: 'center',
+              // paddingTop:30,
+              justifyContent: 'center',
+            }}>
+            <Icon name={'check-circle'} size={60} color={'#fff'} />
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 30,
+                textAlign: 'center',
+                fontWeight: 'bold',
+              }}>
+              Congratulations!
+            </Text>
+            <Text></Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

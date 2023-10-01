@@ -1,7 +1,6 @@
-import {View, FlatList, TouchableOpacity, Image} from 'react-native';
+import {View, FlatList, TouchableOpacity, Image,} from 'react-native';
 import React from 'react';
 import MobText from '../../../components/MobText/MobText';
-import MobTextinput from '../../../components/MobTextinput/MobTextinput';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import AppInput from '../../../components/AppInput/AppInput';
 
@@ -47,8 +46,10 @@ const Feed = ({navigation}) => {
         backgroundColor: 'white',
       }}>
       <AppHeader
+      
         title={'Feeds'}
         subTitle={'Filter'}
+        onPressFilter={()=> navigation.navigate('FilterManu')}
       />
       <View
         style={{

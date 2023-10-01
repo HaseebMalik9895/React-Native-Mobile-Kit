@@ -88,7 +88,7 @@ const Login = ({navigation}) => {
           label={'Sign Up'}
           color={'#5DB075'}
           fontWeight={'bold'}
-          fontSize={16}
+          fontSize={18}
           textAlign={'center'}
         />
       </View>

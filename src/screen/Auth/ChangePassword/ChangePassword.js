@@ -1,15 +1,10 @@
 import {View, Text} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import AppInput from '../../../components/AppInput/AppInput';
 import MobButton from '../../../components/MobButton/MobButton';
-import {useNavigation} from '@react-navigation/native';
-const ForgetPassword = () => {
-  const navigation = useNavigation();
-  const OTPVerification = () => {
-    navigation.navigate('OTPVerification', {value});
-  };
-  const [value, setValue] = useState('');
+
+const ChangePassword = ({navigation}) => {
   return (
     <View
       style={{
@@ -17,16 +12,17 @@ const ForgetPassword = () => {
         backgroundColor: 'white',
       }}>
       <AppHeader
-        title={'Forgot Password'}
+        title={'Change Password'}
+        backArrow={true}
         onPress={() => {
           navigation.goBack();
         }}
-        backArrow={true}
       />
       <View
         style={{
+          justifyContent: 'center',
+          height: 80,
           marginHorizontal: 15,
-          marginVertical: 20,
         }}>
         <Text
           style={{
@@ -35,7 +31,7 @@ const ForgetPassword = () => {
             color: 'black',
             marginBottom: 10,
           }}>
-          Forgot Your Password?
+          Create New Password
         </Text>
         <Text
           style={{
@@ -44,7 +40,7 @@ const ForgetPassword = () => {
             color: 'black',
             marginBottom: 10,
           }}>
-          No worries, we'll help you reset it.
+          Please enter a new password to secure your account.
         </Text>
       </View>
       <View
@@ -52,16 +48,22 @@ const ForgetPassword = () => {
           flex: 0.95,
         }}>
         <AppInput
+          label={'New Password'}
+          placeholder={'Enter new password'}
           flexDirection={'row'}
-          value={value}
-          onChangeText={text => setValue(text)}
-          label={'Email'}
-          placeholder={'Enter your email'}
+        />
+        <AppInput
+          label={'Confirm New Password'}
+          placeholder={'Enter confirm new password'}
+          flexDirection={'row'}
         />
       </View>
-      <MobButton onPress={OTPVerification} label={'Reset Password'} />
+      <MobButton
+        onPress={() => navigation.navigate('Login')}
+        label={'Set New Password'}
+      />
     </View>
   );
 };
 
-export default ForgetPassword;
+export default ChangePassword;

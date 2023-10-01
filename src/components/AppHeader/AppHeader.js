@@ -8,6 +8,7 @@ const AppHeader = ({
   icon,
   onPress,
   backArrow,
+  onPressFilter,
 }) => {
   return (
     <View
@@ -66,6 +67,7 @@ const AppHeader = ({
           justifyContent: 'center',
         }}>
         <Text
+          onPress={onPressFilter}
           style={{
             fontWeight: '500',
             fontSize: 16,
