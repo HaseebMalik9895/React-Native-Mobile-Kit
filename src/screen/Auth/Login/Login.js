@@ -25,9 +25,12 @@ const Login = ({navigation}) => {
           flex: 0.3,
         }}>
         <AppInput
-        flexDirection={'row'} label={'Email'} placeholder={'Enter your email'} />
+          flexDirection={'row'}
+          label={'Email'}
+          placeholder={'Enter your email'}
+        />
         <AppInput
-        flexDirection={'row'}
+          flexDirection={'row'}
           label={'Password'}
           placeholder={'Enter your password'}
           secureTextEntry={true}
@@ -58,7 +61,7 @@ const Login = ({navigation}) => {
           />
         </View>
         <MobButton
-          onPress={() => navigation.navigate('App', {screen: 'Feed'})}
+          onPress={() => navigation.navigate('App', {screen: 'MyTabs'})}
           label={'Log In'}
           marginTop={180}
         />

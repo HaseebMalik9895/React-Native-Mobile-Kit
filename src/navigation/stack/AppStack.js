@@ -1,23 +1,19 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Login from '../../screen/Auth/Login/Login';
-import SignUp from '../../screen/Auth/SignUp/SignUp';
 import Feed from '../../screen/App/Feed/Feed';
 import Market from '../../screen/App/Market/Market';
 import FilterManu from '../../screen/App/FilterManu/FilterManu';
+import MyTabs from './BottomTabs/BottomTabs';
 
 const Stack = createNativeStackNavigator();
 const AppStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Feed"
+      initialRouteName="MyTabs"
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name={'Feed'} component={Feed} />
-      <Stack.Screen name={'Market'} component={Market} />
-      <Stack.Screen name={'FilterManu'} component={FilterManu} />
+      <Stack.Screen name={'MyTabs'} component={MyTabs} />
     </Stack.Navigator>
   );
 };

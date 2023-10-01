@@ -1,4 +1,4 @@
-import {View, FlatList, TouchableOpacity, Image,} from 'react-native';
+import {View, FlatList, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import MobText from '../../../components/MobText/MobText';
 import AppHeader from '../../../components/AppHeader/AppHeader';
@@ -38,19 +38,15 @@ const header = [
     image: '',
   },
 ];
-const Feed = ({navigation}) => {
+const Feed = () => {
   return (
     <View
       style={{
         flex: 1,
         backgroundColor: 'white',
       }}>
-      <AppHeader
-      
-        title={'Feeds'}
-        subTitle={'Filter'}
-        onPressFilter={()=> navigation.navigate('FilterManu')}
-      />
+      <AppHeader title={'Feeds'} subTitle={'Filter'} />
+
       <View
         style={{
           flex: 1,

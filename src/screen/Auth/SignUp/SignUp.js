@@ -102,23 +102,24 @@ const SignUp = ({navigation}) => {
         animationIn={'slideInUp'}
         animationOut={'slideOutUp'}
         isVisible={modal}>
-        <AppHeader
+        {/* <AppHeader
           backArrow={true}
           onPress={() => {
             setModal(false);
           }}
-        />
+        /> */}
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <View
             style={{
-              height: 427,
-              width: 343,
+              height: 350,
+              width: '90%',
               backgroundColor: '#5DB075',
               borderRadius: 20,
               alignItems: 'center',
               // paddingTop:30,
-              justifyContent: 'center',
+              justifyContent: 'space-evenly',
             }}>
+              <View style={{alignItems:'center'}}>
             <Icon name={'check-circle'} size={60} color={'#fff'} />
             <Text
               style={{
@@ -129,7 +130,16 @@ const SignUp = ({navigation}) => {
               }}>
               Congratulations!
             </Text>
-            <Text></Text>
+            </View>
+            <MobButton
+        onPress={() => {
+          setModal(false)
+          navigation.navigate('Login')
+        }}
+        color={"#5DB075"}
+        label={'Login'}
+        backgroundColor={'#fff'}
+      />
           </View>
         </View>
       </Modal>
