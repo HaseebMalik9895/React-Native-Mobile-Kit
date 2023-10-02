@@ -1,0 +1,18 @@
+export const appImages = {
+  aroosanoir: require('../assets/images/aroosanoir.png'),
+  exclusive: require('../assets/images/exclusive.png'),
+  janan: require('../assets/images/janan.png'),
+  janansilver: require('../assets/images/janansilver.png'),
+  vocal: require('../assets/images/vocal.png'),
+  Tshirt: require('../assets/images/Tshirt.png'),
+  TshirtBlack: require('../assets/images/TshirtBlack.png'),
+  Tshirtblue: require('../assets/images/Tshirtblue.png'),
+  Tshirtred: require('../assets/images/Tshirtred.png'),
+  Tshirtprinted: require('../assets/images/Tshirtprinted.png'),
+  jacketskin: require('../assets/images/jacketskin.png'),
+  jacketyellow: require('../assets/images/jacketyellow.png'),
+  jacketjeans: require('../assets/images/jacketjeans.png'),
+  jacketwhite: require('../assets/images/jacketwhite.png'),
+  jacketred: require('../assets/images/jacketred.png'),
+  // Tshirtprinted: require('../assets/images/Tshirtprinted.png'),
+};
