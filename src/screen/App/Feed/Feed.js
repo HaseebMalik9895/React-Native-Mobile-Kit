@@ -52,7 +52,11 @@ const Feed = () => {
           flex: 1,
           backgroundColor: 'white',
         }}>
-        <AppInput borderRadius={40} placeholder={'Search'} />
+        <AppInput
+          flexDirection={'row'}
+          borderRadius={40}
+          placeholder={'Search'}
+        />
 
         <FlatList
           data={header}

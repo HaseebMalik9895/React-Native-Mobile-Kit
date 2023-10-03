@@ -8,6 +8,7 @@ import Home from 'react-native-vector-icons/MaterialCommunityIcons';
 import Store from 'react-native-vector-icons/FontAwesome5';
 import Chat from 'react-native-vector-icons/Ionicons';
 import Person from 'react-native-vector-icons/Fontisto';
+import ProfileOptions from '../../../screen/App/ProfileOptions/ProfileOptions';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,8 +51,8 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="ProfileOptions"
+        component={ProfileOptions}
         options={{
           tabBarIcon: ({focused, color, size}) => (
             <Person name={'person'} color={color} size={30} />

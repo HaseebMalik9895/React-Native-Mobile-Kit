@@ -9,6 +9,7 @@ const AppInput = ({
   inputStyle,
   flexDirection,
   maxLength,
+  borderWidth,
   keyboardType,
   inputContainerStyle,
   value,
@@ -19,7 +20,7 @@ const AppInput = ({
     <View
       style={{
         maxWidth: '100%',
-        marginTop: 5,
+        // marginTop: 5,
         marginHorizontal: 15,
       }}>
       <Text
@@ -36,9 +37,9 @@ const AppInput = ({
             maxWidth: '100%',
             borderColor: '#E8E8E8',
             padding: 5,
-            marginTop: 10,
+            // marginTop: 10,
             borderRadius: borderRadius ? borderRadius : 7,
-            borderWidth: 1.5,
+            borderWidth:borderWidth? borderWidth: 1.5,
             backgroundColor: '#F6F6F6',
             flexDirection: flexDirection,
             alignItems: 'center',

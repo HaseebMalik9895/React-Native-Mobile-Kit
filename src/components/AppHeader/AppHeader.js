@@ -9,6 +9,7 @@ const AppHeader = ({
   onPress,
   backArrow,
   onPressFilter,
+  color,
 }) => {
   return (
     <View
@@ -50,11 +51,13 @@ const AppHeader = ({
           alignItems: 'center',
           justifyContent: 'center',
         }}>
+
+         
         <Text
           onPress={filterPress}
           style={{
             fontSize: 30,
-            color: '#000',
+            color:color?color: '#000',
             fontWeight: '600',
           }}>
           {title}
@@ -71,7 +74,7 @@ const AppHeader = ({
           style={{
             fontWeight: '500',
             fontSize: 16,
-            color: '#5DB075',
+            color:color?color: '#5DB075',
           }}>
           {subTitle}
         </Text>
