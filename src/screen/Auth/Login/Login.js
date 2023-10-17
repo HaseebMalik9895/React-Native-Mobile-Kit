@@ -58,6 +58,7 @@ const Login = ({navigation}) => {
             fontSize={14}
             fontWeight={'900'}
             label={'Keep me logged In'}
+            color={'grey'}
           />
         </View>
         <MobButton

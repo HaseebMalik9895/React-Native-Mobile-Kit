@@ -1,7 +1,6 @@
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import React from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
-import AppInput from '../../../components/AppInput/AppInput';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Messages = ({navigation}) => {
@@ -12,7 +11,8 @@ const Messages = ({navigation}) => {
         paddingHorizontal: 15,
         backgroundColor: 'white',
       }}>
-      <AppHeader title={'Messages'} />
+      <AppHeader onPress={()=>navigation.goBack()} title={'Messages'}
+      backArrow={true} />
       <View
         style={{
           height: '91%',
@@ -29,7 +29,7 @@ const Messages = ({navigation}) => {
             flexDirection: 'row',
             backgroundColor: '#f6f6f6',
           }}>
-          <TextInput
+          <TextInput placeholderTextColor={'grey'}
             placeholder="Text here..."
             style={{
               // backgroundColor:'red',
@@ -37,6 +37,9 @@ const Messages = ({navigation}) => {
               height: 60,
               fontSize: 20,
               paddingHorizontal: 15,
+              color:'black',
+              
+            
             }}
           />
 

@@ -62,6 +62,7 @@ const SignUp = ({navigation}) => {
           color={'green'}
         />
         <MobText
+        color={'grey'}
           fontWeight={'900'}
           label={
             'I would like to receive your newsletter and other promotional information.'

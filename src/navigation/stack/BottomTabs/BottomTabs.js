@@ -9,6 +9,7 @@ import Store from 'react-native-vector-icons/FontAwesome5';
 import Chat from 'react-native-vector-icons/Ionicons';
 import Person from 'react-native-vector-icons/Fontisto';
 import ProfileOptions from '../../../screen/App/ProfileOptions/ProfileOptions';
+import Conversation from '../../../screen/App/Conversation/Conversation';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,8 +43,8 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Messages"
-        component={Messages}
+        name="Conversation"
+        component={Conversation}
         options={{
           tabBarIcon: ({focused, color, size}) => (
             <Chat name={'chatbubbles'} color={color} size={30} />

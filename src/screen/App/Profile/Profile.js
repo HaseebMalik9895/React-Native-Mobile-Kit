@@ -1,9 +1,10 @@
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
-import {Item} from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 import MobText from '../../../components/MobText/MobText';
-import { appImages } from '../../../assets';
+import {appImages} from '../../../assets';
+import Camera from 'react-native-vector-icons/AntDesign';
+
 
 const posts = [
   {
@@ -11,49 +12,43 @@ const posts = [
     name: 'Header',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-   
   },
   {
     id: 1,
     name: 'Header 1',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-  
   },
   {
     id: 2,
     name: 'Header 2',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-  
   },
   {
     id: 3,
     name: 'Header 3',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-   
   },
   {
     id: 4,
     name: 'Header 4',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-    
   },
   {
     id: 5,
     name: 'Header 5',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-    
   },
 ];
 
 const photos = [
   {
     id: 0,
-    images:appImages.Tshirt,
+    images: appImages.Tshirt,
   },
   {
     id: 1,
@@ -133,7 +128,7 @@ const photos = [
   },
 ];
 
-const Profile = () => {
+const Profile = ({navigation}) => {
   const [button, setButton] = useState('post');
 
   return (
@@ -148,17 +143,23 @@ const Profile = () => {
           height: '25%',
           width: '100%',
         }}>
-        <AppHeader title={'Profile'} color={'white'} />
+        <AppHeader
+          onPress={() => navigation.goBack()}
+          title={'Profile'}
+          color={'white'}
+          backArrow={true}
+        />
         <View
           style={{
             height: 150,
             width: '100%',
-            // backgroundColor:'red',
+            // backgroundColor: 'red',
             alignItems: 'center',
             justifyContent: 'center',
             // marginTop:60,
             // marginBottom:60,
             marginVertical: 60,
+            position:'relative',
           }}>
           <Image
             source={require('../../../assets/images/person.png')}
@@ -168,6 +169,19 @@ const Profile = () => {
               width: 150,
             }}
           />
+          <TouchableOpacity
+          style={{
+            height:40,
+            width:40,
+            borderRadius:80,
+            alignItems:'center',
+            justifyContent:'center',
+            backgroundColor:'#5DB075',
+            position:'absolute',
+            bottom:23,
+            right:145,
+          }}>
+          <Camera name={'camerao'} size={30} color={'white'} /></TouchableOpacity>
         </View>
       </View>
       <View
@@ -346,16 +360,16 @@ const Profile = () => {
                     backgroundColor: '#f6f6f6',
                     // padding:10
                     margin: 10,
-                    borderRadius:10,
+                    borderRadius: 10,
                   }}>
-                    <Image
+                  <Image
                     source={item.images}
                     resizeMode={'cover'}
                     style={{
-                      height:120,
-                      width:120,
+                      height: 120,
+                      width: 120,
                     }}
-                    />
+                  />
                 </TouchableOpacity>
               );
             }}
