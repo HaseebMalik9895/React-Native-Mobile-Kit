@@ -1,10 +1,20 @@
-import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  PermissionsAndroid,
+} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import MobText from '../../../components/MobText/MobText';
 import {appImages} from '../../../assets';
 import Camera from 'react-native-vector-icons/AntDesign';
-
+import Galleryimage from 'react-native-vector-icons/Entypo';
+import Galleryvideo from 'react-native-vector-icons/Ionicons';
+import ImagePicker, {openPicker} from 'react-native-image-crop-picker';
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 const posts = [
   {
@@ -129,8 +139,78 @@ const photos = [
 ];
 
 const Profile = ({navigation}) => {
-  const [button, setButton] = useState('post');
+  const refRBSheet = useRef();
+  const openImagePickerWithSheetClose = () => {
+    // Close the RBSheet first
+    refRBSheet.current.close();
+    // Then open the image picker
+    openImagePicker();
+  };
 
+  const openGalleryWithSheetClose = () => {
+    // Close the RBSheet first
+    refRBSheet.current.close();
+    // Then open the image picker
+    openGallery();
+  };
+  const requestPermission = async () => {
+    try {
+      console.log('asking for permission');
+      const granted = await PermissionsAndroid.requestMultiple([
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      ]);
+      if (
+        granted['android.permission.CAMERA'] &&
+        granted['android.permission.WRITE_EXTERNAL_STORAGE']
+      ) {
+        console.log('You can use the camera');
+      } else {
+        console.log('Camera permission denied');
+      }
+    } catch (error) {
+      console.log('permission error', error);
+    }
+  };
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  const [button, setButton] = useState('post');
+  const [image, setImage] = useState(null);
+
+  const openImagePicker = () => {
+    ImagePicker.openCamera({
+      // ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    })
+      .then(response => {
+        if (response.path) {
+          setImage({uri: response.path});
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+  const openGallery = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(response => {
+      if (!response.didCancel) {
+        // User selected an image from the gallery
+        if (response.path) {
+          setImage({ uri: response.path });
+        }
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  };
   return (
     <View
       style={{
@@ -153,35 +233,40 @@ const Profile = ({navigation}) => {
           style={{
             height: 150,
             width: '100%',
-            // backgroundColor: 'red',
             alignItems: 'center',
             justifyContent: 'center',
-            // marginTop:60,
-            // marginBottom:60,
             marginVertical: 60,
-            position:'relative',
+            position: 'relative',
           }}>
           <Image
-            source={require('../../../assets/images/person.png')}
+            source={
+              image ? image : require('../../../assets/images/person.png')
+            }
             resizeMode={'cover'}
             style={{
-              height: 150,
-              width: 150,
+              height: 120,
+              width: 120,
+              resizeMode: 'center',
+              borderRadius: 60,
+              borderColor: 'white',
+              borderWidth: 2,
             }}
           />
           <TouchableOpacity
-          style={{
-            height:40,
-            width:40,
-            borderRadius:80,
-            alignItems:'center',
-            justifyContent:'center',
-            backgroundColor:'#5DB075',
-            position:'absolute',
-            bottom:23,
-            right:145,
-          }}>
-          <Camera name={'camerao'} size={30} color={'white'} /></TouchableOpacity>
+            onPress={() => refRBSheet.current.open()}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 80,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#5DB075',
+              position: 'absolute',
+              bottom: 23,
+              right: 145,
+            }}>
+            <Camera name={'camerao'} size={30} color={'white'} />
+          </TouchableOpacity>
         </View>
       </View>
       <View
@@ -358,7 +443,6 @@ const Profile = ({navigation}) => {
                     height: 120,
                     width: 120,
                     backgroundColor: '#f6f6f6',
-                    // padding:10
                     margin: 10,
                     borderRadius: 10,
                   }}>
@@ -376,6 +460,113 @@ const Profile = ({navigation}) => {
           />
         </View>
       )}
+
+      <RBSheet
+        ref={refRBSheet}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        height={200}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+          },
+        }}>
+        <View
+          style={{
+            height: '90%',
+            marginHorizontal: 20,
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity 
+            onPress={() => {
+              openImagePickerWithSheetClose();
+            }}
+            style={{
+              height: 50,
+              width: '100%',
+              flexDirection: 'row',
+              backgroundColor: '#f6f6f6',
+              borderTopLeftRadius: 8,
+              borderTopEndRadius: 8,
+            }}>
+            <View
+              style={{
+                height: 50,
+                width: 40,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Camera name={'camerao'} size={30} color={'black'} />
+            </View>
+
+            <Text
+              style={{
+                fontSize: 20,
+                alignSelf: 'center',
+                marginHorizontal: 5,
+              }}>
+              Take profile picture
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              openGalleryWithSheetClose();
+            }}
+            style={{
+              height: 50,
+              width: '100%',
+              flexDirection: 'row',
+              backgroundColor: '#f6f6f6',
+            }}>
+            <View
+              style={{
+                height: 50,
+                width: 40,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Galleryimage name={'images'} size={30} color={'black'} />
+            </View>
+            <Text
+              style={{
+                fontSize: 20,
+                alignSelf: 'center',
+                marginHorizontal: 5,
+              }}>
+              Choose profile picture
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              height: 50,
+              width: '100%',
+              flexDirection: 'row',
+              backgroundColor: '#f6f6f6',
+            }}>
+            {' '}
+            <View
+              style={{
+                height: 50,
+                width: 40,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Galleryvideo name={'videocam'} size={30} color={'black'} />
+            </View>
+            <Text
+              style={{
+                fontSize: 20,
+                alignSelf: 'center',
+                marginHorizontal: 5,
+              }}>
+              See profile video
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </RBSheet>
     </View>
   );
 };
