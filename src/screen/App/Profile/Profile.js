@@ -244,8 +244,8 @@ const Profile = ({navigation}) => {
             }
             resizeMode={'cover'}
             style={{
-              height: 120,
-              width: 120,
+              height: 110,
+              width: 110,
               resizeMode: 'center',
               borderRadius: 60,
               borderColor: 'white',
@@ -255,17 +255,17 @@ const Profile = ({navigation}) => {
           <TouchableOpacity
             onPress={() => refRBSheet.current.open()}
             style={{
-              height: 40,
-              width: 40,
+              height: 28,
+              width: 28,
               borderRadius: 80,
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: '#5DB075',
               position: 'absolute',
-              bottom: 23,
-              right: 145,
+              bottom: 27,
+              right: 127,
             }}>
-            <Camera name={'camerao'} size={30} color={'white'} />
+            <Camera name={'camerao'} size={20} color={'white'} />
           </TouchableOpacity>
         </View>
       </View>

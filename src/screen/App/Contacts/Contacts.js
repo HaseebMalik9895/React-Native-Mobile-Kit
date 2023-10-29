@@ -2,8 +2,8 @@ import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import MobText from '../../../components/MobText/MobText';
-import Icon from 'react-native-vector-icons/Ionicons'
-const Conversationname = [
+
+const Contects = [
   {
     id: 0,
     name: 'Header',
@@ -34,45 +34,45 @@ const Conversationname = [
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
   },
-  {
-    id: 5,
-    name: 'Header 5',
-    comment:
-      "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-  },
-  {
-    id: 6,
-    name: 'Header 5',
-    comment:
-      "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-  },
-  {
-    id: 7,
-    name: 'Header 5',
-    comment:
-      "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-  },
-  {
-    id: 8,
-    name: 'Header 5',
-    comment:
-      "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-  },
-  {
-    id: 9,
-    name: 'Header 5',
-    comment:
-      "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-  },
-  {
-    id: 10,
-    name: 'Header 5',
-    comment:
-      "He'll want to use your yacht, and I don't want this thing smelling like fish.",
-  },
+  // {
+  //   id: 5,
+  //   name: 'Header 5',
+  //   comment:
+  //     "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+  // },
+  // {
+  //   id: 6,
+  //   name: 'Header 5',
+  //   comment:
+  //     "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+  // },
+  // {
+  //   id: 7,
+  //   name: 'Header 5',
+  //   comment:
+  //     "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+  // },
+  // {
+  //   id: 8,
+  //   name: 'Header 5',
+  //   comment:
+  //     "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+  // },
+  // {
+  //   id: 9,
+  //   name: 'Header 5',
+  //   comment:
+  //     "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+  // },
+  // {
+  //   id: 10,
+  //   name: 'Header 5',
+  //   comment:
+  //     "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+  // },
 ];
 
-const Conversation = ({navigation}) => {
+const Contacts = ({navigation}) => {
   return (
     <View
       style={{
@@ -80,18 +80,18 @@ const Conversation = ({navigation}) => {
         backgroundColor: 'white',
         paddingHorizontal: 15,
       }}>
-      <AppHeader title={'Conversation'} />
+      <AppHeader
+        onPress={() => navigation.navigate('Conversation')}
+        backArrow={true}
+        title={'Contacts'}
+      />
       <View
         style={{
-          // paddingVertical: 20,
-      
+          paddingVertical: 20,
         }}>
         <FlatList
-        contentContainerStyle={{
-          height:'96%',
-        }}
           showsVerticalScrollIndicator={false}
-          data={Conversationname}
+          data={Contects}
           renderItem={({item}) => {
             return (
               <View
@@ -152,22 +152,10 @@ const Conversation = ({navigation}) => {
               </View>
             );
           }}
-        /><TouchableOpacity onPress={ ()=> navigation.navigate('Contacts')}
-      style={{
-        position:'absolute',
-        bottom:70,
-        alignSelf:'flex-end',
-        height:'10%',width:'20%',borderWidth:2,
-        alignItems:'center',
-        justifyContent:'center',
-        backgroundColor:'#5DB075',
-        borderColor:'white',
-        borderRadius:50,
-      }}><Icon name={'chatbubble-outline'} size={35} color={'white'} /></TouchableOpacity>
+        />
       </View>
-     
     </View>
   );
 };
 
-export default Conversation;
+export default Contacts;

@@ -41,10 +41,9 @@ const Login = ({navigation}) => {
             flexDirection: 'row',
             alignItems: 'center',
             width: '100%',
-            marginTop: 32,
             marginRight: 10,
             marginLeft: 6,
-            marginBottom: 50,
+            marginBottom: 20,
           }}>
           <Checkbox
             status={checked ? 'checked' : 'unchecked'}
@@ -78,8 +77,10 @@ const Login = ({navigation}) => {
         style={{
           width: '100%',
           alignItems: 'center',
-          justifyContent: 'flex-end',
-          height: '22%',
+          // justifyContent: 'flex-end',
+          // height: '22%',
+          position: 'absolute',
+          bottom: 20,
         }}>
         <MobText
           label={"Don't have an account?"}

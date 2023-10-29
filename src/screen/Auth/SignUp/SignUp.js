@@ -8,10 +8,37 @@ import AppHeader from '../../../components/AppHeader/AppHeader';
 import AppInput from '../../../components/AppInput/AppInput';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/Feather';
+import auth from '@react-native-firebase/auth';
+
 
 const SignUp = ({navigation}) => {
   const [checked, setChecked] = useState(false);
   const [modal, setModal] = useState(false);
+ const [name, setName] = useState('')
+ const [email, setEmail] = useState('')
+ const [password, setPassword] = useState('')
+ const [err, setErr] = useState('')
+
+ const handleSignup = async ()=>{
+try {
+  if (!name || !email || !password) {
+    console.log('please enter name email and password')
+  
+    const errMessage = 'please enter name email and password'
+    setErr(errMessage)
+  } else {
+    await auth().createUserWithEmailAndPassword(email,password)
+    navigation.navigate('Login')
+  }
+} catch (error) {
+  setErr(error.message)
+  console.log('error',error)
+  
+}
+
+ }
+
+
   return (
     <View
       style={{
@@ -26,23 +53,30 @@ const SignUp = ({navigation}) => {
         backArrow={true}
       />
       <View style={{}}>
-        <AppInput
+        <AppInput 
+        value={name}
+        onChangeText={value=>setName(value)}
           flexDirection={'row'}
           label={'Name'}
           placeholder={'Enter your name'}
         />
         <AppInput
+        value={email}
+        onChangeText={value=>setEmail(value)}
           flexDirection={'row'}
           label={'Email'}
           placeholder={'Enter your email'}
         />
-        <AppInput
+        <AppInput 
+        value={password}
+        onChangeText={value=>setPassword(value)}
           label={'Password'}
           placeholder={'Enter your password'}
           secureTextEntry={true}
           flexDirection={'row'}
         />
       </View>
+      <Text style={{color:'red', marginLeft:15}}>{err}</Text>
       <View
         style={{
           flexDirection: 'row',
@@ -53,6 +87,7 @@ const SignUp = ({navigation}) => {
           marginLeft: 6,
           marginBottom: 50,
         }}>
+          
         <Checkbox
           status={checked ? 'checked' : 'unchecked'}
           onPress={() => {
@@ -69,10 +104,7 @@ const SignUp = ({navigation}) => {
           }
         />
       </View>
-      <MobButton
-        onPress={() => {
-          setModal(true);
-        }}
+      <MobButton onPress={handleSignup}
         label={'Sign Up'}
         backgroundColor={'#5DB075'}
       />
