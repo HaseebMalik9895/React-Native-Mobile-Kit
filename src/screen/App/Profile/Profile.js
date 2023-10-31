@@ -177,7 +177,7 @@ const Profile = ({navigation}) => {
   }, []);
 
   const [button, setButton] = useState('post');
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(require('../../../assets/images/Tshirt.png'));
 
   const openImagePicker = () => {
     ImagePicker.openCamera({

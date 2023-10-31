@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {View,Text, ActivityIndicator} from 'react-native';
 import React, {useState} from 'react';
 import MobText from '../../../components/MobText/MobText';
 import MobButton from '../../../components/MobButton/MobButton';
@@ -6,9 +6,36 @@ import AppHeader from '../../../components/AppHeader/AppHeader';
 import {Checkbox} from 'react-native-paper';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import AppInput from '../../../components/AppInput/AppInput';
+import auth from '@react-native-firebase/auth'
+
+
 
 const Login = ({navigation}) => {
   const [checked, setChecked] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [err, setErr] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    try {
+      if (!email || !password){
+      setErr('enter email and password*')
+   
+      } else {
+        setLoading(true)
+await auth().signInWithEmailAndPassword(email,password)
+setLoading(false)
+ navigation.navigate('App')
+
+      }
+    } catch (error) {
+      console.log('Error',error)
+      setErr(error.message)
+    }
+   
+  };
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={{
@@ -24,17 +51,29 @@ const Login = ({navigation}) => {
         style={{
           flex: 0.3,
         }}>
-        <AppInput
+        <AppInput 
+        value={email}
+        onChangeText={value=>setEmail(value)}
           flexDirection={'row'}
           label={'Email'}
           placeholder={'Enter your email'}
         />
         <AppInput
+        value={password}
+        onChangeText={value=>setPassword(value)}
           flexDirection={'row'}
           label={'Password'}
           placeholder={'Enter your password'}
           secureTextEntry={true}
         />
+<Text
+style={{
+  color:'red',
+  marginLeft:15,
+  fontSize:15,
+}}>{err}</Text>
+
+  {loading ? <ActivityIndicator/>: null}
 
         <View
           style={{
@@ -60,11 +99,9 @@ const Login = ({navigation}) => {
             color={'grey'}
           />
         </View>
-        <MobButton
-          onPress={() => navigation.navigate('App', {screen: 'MyTabs'})}
-          label={'Log In'}
-          marginTop={180}
-        />
+        <MobButton onPress={handleLogin} 
+        
+        label={'Log In'} marginTop={180} />
         <MobText
           onPress={() => navigation.navigate('ForgetPassword')}
           textAlign={'center'}

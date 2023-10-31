@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import React, {useState} from 'react';
 import MobText from '../../../components/MobText/MobText';
 import MobTextinput from '../../../components/MobTextinput/MobTextinput';
@@ -18,6 +18,7 @@ const SignUp = ({navigation}) => {
  const [email, setEmail] = useState('')
  const [password, setPassword] = useState('')
  const [err, setErr] = useState('')
+ const [loading, setLoading] = useState(false)
 
  const handleSignup = async ()=>{
 try {
@@ -27,7 +28,9 @@ try {
     const errMessage = 'please enter name email and password'
     setErr(errMessage)
   } else {
+    setLoading(true)
     await auth().createUserWithEmailAndPassword(email,password)
+    setLoading(false)
     navigation.navigate('Login')
   }
 } catch (error) {
@@ -77,6 +80,8 @@ try {
         />
       </View>
       <Text style={{color:'red', marginLeft:15}}>{err}</Text>
+
+      {loading ? <ActivityIndicator/>:null}
       <View
         style={{
           flexDirection: 'row',
