@@ -87,7 +87,7 @@ onPress={()=>navigation.navigate('Profile')}
             Account
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        <TouchableOpacity onPress={()=> navigation.navigate('Conversation')}
           style={{
             height: 60,
             width: '100%',
@@ -105,7 +105,7 @@ onPress={()=>navigation.navigate('Profile')}
             }}>
             <Messages name={'chatbubbles'} size={20} color={'black'} />
           </View>
-          <Text
+          <Text 
             style={{
               fontSize: 15,
               color: 'black',

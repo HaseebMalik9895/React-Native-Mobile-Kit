@@ -211,7 +211,7 @@ const Market = () => {
             marginHorizontal: 18,
             marginVertical: 30,
           }}>
-          Perfumes
+          Jackets
         </Text>
         <FlatList
           showsHorizontalScrollIndicator={false}
@@ -233,6 +233,7 @@ const Market = () => {
                     borderColor: 'grey',
                     borderRadius: 8,
                     alignItems: 'center',
+                    marginBottom:15,
                   }}>
                   <Image
                     source={item.image2}

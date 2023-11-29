@@ -2,7 +2,7 @@ import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import MobText from '../../../components/MobText/MobText';
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Ionicons';
 const Conversationname = [
   {
     id: 0,
@@ -42,31 +42,37 @@ const Conversationname = [
   },
   {
     id: 6,
-    name: 'Header 5',
+    name: 'Header 6',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
   },
   {
     id: 7,
-    name: 'Header 5',
+    name: 'Header 7',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
   },
   {
     id: 8,
-    name: 'Header 5',
+    name: 'Header 8',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
   },
   {
     id: 9,
-    name: 'Header 5',
+    name: 'Header 9',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
   },
   {
     id: 10,
-    name: 'Header 5',
+    name: 'Header 10',
+    comment:
+      "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+  },
+  {
+    id: 11,
+    name: 'Header 11',
     comment:
       "He'll want to use your yacht, and I don't want this thing smelling like fish.",
   },
@@ -82,14 +88,11 @@ const Conversation = ({navigation}) => {
       }}>
       <AppHeader title={'Conversation'} />
       <View
-        style={{
-          // paddingVertical: 20,
-      
-        }}>
+>
         <FlatList
-        contentContainerStyle={{
-          height:'96%',
-        }}
+          contentContainerStyle={{
+            height: '96%',
+          }}
           showsVerticalScrollIndicator={false}
           data={Conversationname}
           renderItem={({item}) => {
@@ -125,7 +128,6 @@ const Conversation = ({navigation}) => {
                     </View>
                     <View
                       style={{
-                        // backgroundColor: 'yellow',
                         maxWidth: '100%',
                         height: 80,
                         marginHorizontal: 5,
@@ -152,20 +154,25 @@ const Conversation = ({navigation}) => {
               </View>
             );
           }}
-        /><TouchableOpacity onPress={ ()=> navigation.navigate('Contacts')}
-      style={{
-        position:'absolute',
-        bottom:70,
-        alignSelf:'flex-end',
-        height:'10%',width:'20%',borderWidth:2,
-        alignItems:'center',
-        justifyContent:'center',
-        backgroundColor:'#5DB075',
-        borderColor:'white',
-        borderRadius:50,
-      }}><Icon name={'chatbubble-outline'} size={35} color={'white'} /></TouchableOpacity>
+        />
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Contacts')}
+          style={{
+            position: 'absolute',
+            bottom: 70,
+            alignSelf: 'flex-end',
+            height: '10%',
+            width: '20%',
+            borderWidth: 2,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#5DB075',
+            borderColor: 'white',
+            borderRadius: 50,
+          }}>
+          <Icon name={'chatbubble-outline'} size={35} color={'white'} />
+        </TouchableOpacity>
       </View>
-     
     </View>
   );
 };

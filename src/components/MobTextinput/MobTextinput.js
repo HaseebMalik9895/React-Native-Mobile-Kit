@@ -26,7 +26,6 @@ const MobTextinput = ({
           fontWeight: 'bold',
           color: color ? color : 'black',
           alignSelf: 'flex-start',
-          // marginLeft:16,
           marginTop: 10,
         }}>
         {label}

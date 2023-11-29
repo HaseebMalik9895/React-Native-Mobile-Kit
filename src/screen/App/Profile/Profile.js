@@ -263,7 +263,7 @@ const Profile = ({navigation}) => {
               backgroundColor: '#5DB075',
               position: 'absolute',
               bottom: 27,
-              right: 127,
+              right: 152,
             }}>
             <Camera name={'camerao'} size={20} color={'white'} />
           </TouchableOpacity>
@@ -546,7 +546,6 @@ const Profile = ({navigation}) => {
               flexDirection: 'row',
               backgroundColor: '#f6f6f6',
             }}>
-            {' '}
             <View
               style={{
                 height: 50,

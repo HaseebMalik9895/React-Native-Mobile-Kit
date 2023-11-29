@@ -42,6 +42,7 @@ const AppHeader = ({
         <View
           style={{
             width: '10%',
+            
           }}
         />
       )}

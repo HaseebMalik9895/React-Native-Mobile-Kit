@@ -1,9 +1,29 @@
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
-import React from 'react';
+import React,{useState,useEffect,useCallback} from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { GiftedChat,InputToolbar} from 'react-native-gifted-chat'
 const Messages = ({navigation}) => {
+const [messages, setMessages] = useState([])
+useEffect(() => {
+  setMessages([
+    {
+      _id: 1,
+      text: 'Hello developer',
+      createdAt: new Date(),
+      user: {
+        _id: 2,
+        name: 'React Native',
+      },
+    },
+  ])
+}, [])
+const onSend = useCallback((messages = []) => {
+  setMessages(previousMessages =>
+    GiftedChat.append(previousMessages, messages),
+  )
+}, [])
+
   return (
     <View
       style={{
@@ -13,51 +33,28 @@ const Messages = ({navigation}) => {
       }}>
       <AppHeader onPress={()=>navigation.goBack()} title={'Messages'}
       backArrow={true} />
-      <View
-        style={{
-          height: '91%',
-          width: '100%',
-          justifyContent: 'flex-end',
-        }}>
-        <View
-          style={{
-            // height: 65,
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            borderRadius: 7,
-            flexDirection: 'row',
-            backgroundColor: '#f6f6f6',
-          }}>
-          <TextInput placeholderTextColor={'grey'}
-            placeholder="Text here..."
-            style={{
-              // backgroundColor:'red',
-              width: '90%',
-              height: 60,
-              fontSize: 20,
-              paddingHorizontal: 15,
-              color:'black',
-              
-            
-            }}
-          />
-
-          <View
-            style={{
-              width: '10%',
-            }}>
-            <TouchableOpacity
-              style={{
-                height: 30,
-                width: 30,
-                marginRight: 20,
-              }}>
-              <Icon name={'arrow-circle-up'} size={30} color={'#5DB075'} />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
+     <GiftedChat 
+       messages={messages}
+       onSend={messages => onSend(messages)}
+       user={{
+         _id: 1,
+       }}
+      //  renderInputToolbar={props => {
+      //   return (
+      //     <InputToolbar
+      //       {...props}
+      //       containerStyle={{
+      //         borderWidth:1,
+      //         borderRadius:10,
+      //         borderColor:'#ccc',
+      //         paddingBottom: 10,
+      //         marginBottom:10,
+      //       }}
+      //     />
+          
+      //   );
+      // }}
+     />
     </View>
   );
 };

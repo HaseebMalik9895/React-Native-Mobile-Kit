@@ -1,4 +1,4 @@
-import {View,Text, ActivityIndicator} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import React, {useState} from 'react';
 import MobText from '../../../components/MobText/MobText';
 import MobButton from '../../../components/MobButton/MobButton';
@@ -6,9 +6,7 @@ import AppHeader from '../../../components/AppHeader/AppHeader';
 import {Checkbox} from 'react-native-paper';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import AppInput from '../../../components/AppInput/AppInput';
-import auth from '@react-native-firebase/auth'
-
-
+import auth from '@react-native-firebase/auth';
 
 const Login = ({navigation}) => {
   const [checked, setChecked] = useState(false);
@@ -19,21 +17,18 @@ const Login = ({navigation}) => {
 
   const handleLogin = async () => {
     try {
-      if (!email || !password){
-      setErr('enter email and password*')
-   
+      if (!email || !password) {
+        setErr('enter email and password*');
       } else {
-        setLoading(true)
-await auth().signInWithEmailAndPassword(email,password)
-setLoading(false)
- navigation.navigate('App')
-
+        setLoading(true);
+        await auth().signInWithEmailAndPassword(email, password);
+        setLoading(false);
+        navigation.navigate('App');
       }
     } catch (error) {
-      console.log('Error',error)
-      setErr(error.message)
+      console.log('Error', error);
+      setErr(error.message);
     }
-   
   };
 
   return (
@@ -51,29 +46,31 @@ setLoading(false)
         style={{
           flex: 0.3,
         }}>
-        <AppInput 
-        value={email}
-        onChangeText={value=>setEmail(value)}
+        <AppInput
+          value={email}
+          onChangeText={value => setEmail(value)}
           flexDirection={'row'}
           label={'Email'}
           placeholder={'Enter your email'}
         />
         <AppInput
-        value={password}
-        onChangeText={value=>setPassword(value)}
+          value={password}
+          onChangeText={value => setPassword(value)}
           flexDirection={'row'}
           label={'Password'}
           placeholder={'Enter your password'}
           secureTextEntry={true}
         />
-<Text
-style={{
-  color:'red',
-  marginLeft:15,
-  fontSize:15,
-}}>{err}</Text>
+        <Text
+          style={{
+            color: 'red',
+            marginLeft: 15,
+            fontSize: 15,
+          }}>
+          {err}
+        </Text>
 
-  {loading ? <ActivityIndicator/>: null}
+        {loading ? <ActivityIndicator /> : null}
 
         <View
           style={{
@@ -99,9 +96,7 @@ style={{
             color={'grey'}
           />
         </View>
-        <MobButton onPress={handleLogin} 
-        
-        label={'Log In'} marginTop={180} />
+        <MobButton onPress={handleLogin} label={'Log In'} marginTop={180} />
         <MobText
           onPress={() => navigation.navigate('ForgetPassword')}
           textAlign={'center'}
@@ -114,8 +109,6 @@ style={{
         style={{
           width: '100%',
           alignItems: 'center',
-          // justifyContent: 'flex-end',
-          // height: '22%',
           position: 'absolute',
           bottom: 20,
         }}>
