@@ -42,7 +42,7 @@ onPress={()=>navigation.navigate('Profile')}
               color: 'black',
               marginLeft: 10,
             }}>
-            Victoria Robertson
+            Haseeb Bin Umar
           </Text>
           <Text
             style={{
@@ -52,7 +52,7 @@ onPress={()=>navigation.navigate('Profile')}
               marginLeft: 10,
               marginTop: 5,
             }}>
-            A mantra goes here
+            Application Developer
           </Text>
         </View>
       </TouchableOpacity>

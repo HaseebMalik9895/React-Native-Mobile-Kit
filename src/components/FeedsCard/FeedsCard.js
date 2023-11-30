@@ -1,7 +1,14 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import Like from 'react-native-vector-icons/AntDesign';
+import Comment from 'react-native-vector-icons/FontAwesome';
+import Share from 'react-native-vector-icons/Ionicons';
 
 const FeedsCard = () => {
+  const [like, setLike] = useState(true);
+  const [comment, setComment] = useState(true);
+  const [share, setShare] = useState(true);
+  const [follow, setFollow] = useState(true);
   return (
     <View
       style={{
@@ -14,7 +21,7 @@ const FeedsCard = () => {
           width: '100%',
           flexDirection: 'row',
           borderBottomWidth: 0.9,
-          borderColor:'grey',
+          borderColor: 'grey',
         }}>
         <View
           style={{
@@ -60,10 +67,11 @@ const FeedsCard = () => {
             justifyContent: 'center',
           }}>
           <Text
-            style={{ fontSize:16,
-              color: '#5DB075',
-            }}>
-            Follow
+            onPress={() => {
+              setFollow(!follow);
+            }}
+            style={{fontSize: 14, color: '#5DB075',fontWeight:'700'}}>
+            {follow ? 'Follow' : 'Unfollow'}
           </Text>
         </View>
       </View>
@@ -82,15 +90,28 @@ const FeedsCard = () => {
           alignItems: 'center',
           borderTopWidth: 0.3,
           marginBottom: 10,
-          borderColor:'grey',
+          borderColor: 'grey',
         }}>
         <TouchableOpacity
+          onPress={() => {
+            setLike(!like);
+          }}
           style={{
-            width: '33%',
+            height: 50,
+            width: '32%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            borderRightWidth: 0.5,
           }}>
+          <Like
+            name={like ? 'like2' : 'like1'}
+            size={25}
+            color={like ? 'grey' : 'red'}
+          />
           <Text
             style={{
-              fontSize: 18,
+              fontSize: 20,
               fontWeight: '600',
               textAlign: 'center',
             }}>
@@ -98,9 +119,22 @@ const FeedsCard = () => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => {
+            setComment(!comment);
+          }}
           style={{
-            width: '33%',
+            height: 50,
+            width: '30%',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            borderRightWidth: 0.5,
           }}>
+          <Comment
+            name={comment ? 'comment-o' : 'comment'}
+            size={24}
+            color={comment ? 'grey' : '#5DB075'}
+          />
           <Text
             style={{
               fontSize: 18,
@@ -111,9 +145,21 @@ const FeedsCard = () => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => {
+            setShare(!share);
+          }}
           style={{
-            width: '33%',
+            height: 50,
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: '30%',
+            justifyContent: 'space-evenly',
           }}>
+          <Share
+            name={share ? 'arrow-redo-outline' : 'arrow-redo-sharp'}
+            size={30}
+            color={share ? 'grey' : '#5DB075'}
+          />
           <Text
             style={{
               fontSize: 18,

@@ -1,28 +1,58 @@
-import {View, Text, Image, TouchableOpacity, TextInput,ActivityIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  ActivityIndicator,
+} from 'react-native';
 import React, {useState} from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import database from '@react-native-firebase/database';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const Posts = ({navigation}) => {
   const [postText, setPostText] = useState('');
   const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState();
+
   const handlePost = async () => {
-    try { setLoading(true)
+    try {
+      setLoading(true);
       // Assuming you have a Firebase database reference
       const postsRef = database().ref('posts');
 
       // Push the new post to the 'posts' collection
-     await postsRef.push({
+      await postsRef.push({
         text: postText,
 
         // Add other data related to the post (user information, timestamp, etc.)
       });
-      
+
       // Navigate to the home screen or do any other action after posting
       navigation.goBack();
     } catch (error) {
       console.log('Error posting:', error);
     }
+  };
+
+  const openImagePicker = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 300,
+      // cropping: true, // Enable cropping
+      cropperCircleOverlay: false, // Set to true if you want a circular overlay
+      cropperToolbarTitle: 'Crop Image', // Title for the cropping screen
+      includeBase64: true, // Set to true if you want to include base64-encoded image data
+    })
+      .then(response => {
+        if (response.path) {
+          setImage({uri: response.path});
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
@@ -91,10 +121,15 @@ const Posts = ({navigation}) => {
               height: '100%',
               justifyContent: 'center',
             }}>
-              {  loading?<ActivityIndicator/>:
-            <Text onPress={handlePost} style={{fontSize: 18, color: '#5DB075'}}>
-              Post
-            </Text>}
+            {loading ? (
+              <ActivityIndicator />
+            ) : (
+              <Text
+                onPress={handlePost}
+                style={{fontSize: 18, color: '#5DB075'}}>
+                Post
+              </Text>
+            )}
           </View>
         </View>
         <View
@@ -113,14 +148,25 @@ const Posts = ({navigation}) => {
               fontSize: 30,
             }}
           />
+          <Image
+            source={image?image : null}
+            resizeMode={'cover'}
+            style={{
+              height: '89%',
+              width: '100%',
+              resizeMode: 'cover',
+              borderWidth: 2,
+            }}
+          />
         </View>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'flex-end',
-            marginTop: 5,
+            marginTop: 10,
           }}>
           <TouchableOpacity
+            onPress={openImagePicker}
             style={{
               backgroundColor: 'white',
               width: '30%',
@@ -148,6 +194,7 @@ const Posts = ({navigation}) => {
               borderWidth: 0.5,
               borderColor: '#5DB075',
               borderRadius: 10,
+              marginLeft:5,
             }}>
             <Text
               style={{

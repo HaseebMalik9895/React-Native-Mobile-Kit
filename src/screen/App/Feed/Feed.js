@@ -17,6 +17,22 @@ const Feed = ({navigation}) => {
       id: 2,
       name: 'haseeb',
     },
+    {
+      id: 3,
+      name: 'haseeb',
+    },
+    {
+      id: 4,
+      name: 'haseeb',
+    },
+    {
+      id: 5,
+      name: 'haseeb',
+    },
+    {
+      id: 6,
+      name: 'haseeb',
+    },
   ];
   const keyExtractor = item => item.id;
   return (

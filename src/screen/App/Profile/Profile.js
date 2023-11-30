@@ -141,16 +141,12 @@ const photos = [
 const Profile = ({navigation}) => {
   const refRBSheet = useRef();
   const openImagePickerWithSheetClose = () => {
-    // Close the RBSheet first
     refRBSheet.current.close();
-    // Then open the image picker
     openImagePicker();
   };
 
   const openGalleryWithSheetClose = () => {
-    // Close the RBSheet first
     refRBSheet.current.close();
-    // Then open the image picker
     openGallery();
   };
   const requestPermission = async () => {
@@ -177,7 +173,9 @@ const Profile = ({navigation}) => {
   }, []);
 
   const [button, setButton] = useState('post');
-  const [image, setImage] = useState(require('../../../assets/images/Tshirt.png'));
+  const [image, setImage] = useState(
+    require('../../../assets/images/Tshirt.png'),
+  );
 
   const openImagePicker = () => {
     ImagePicker.openCamera({
@@ -200,16 +198,18 @@ const Profile = ({navigation}) => {
       width: 300,
       height: 400,
       cropping: true,
-    }).then(response => {
-      if (!response.didCancel) {
-        // User selected an image from the gallery
-        if (response.path) {
-          setImage({ uri: response.path });
+    })
+      .then(response => {
+        if (!response.didCancel) {
+          // User selected an image from the gallery
+          if (response.path) {
+            setImage({uri: response.path});
+          }
         }
-      }
-    }).catch(error => {
-      console.log(error);
-    });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
   return (
     <View
@@ -250,6 +250,7 @@ const Profile = ({navigation}) => {
               borderRadius: 60,
               borderColor: 'white',
               borderWidth: 2,
+              backgroundColor:'white'
             }}
           />
           <TouchableOpacity
@@ -284,7 +285,7 @@ const Profile = ({navigation}) => {
             fontSize: 30,
             fontWeight: 'bold',
           }}>
-          Victoria Robertson
+          Haseeb Bin Umar
         </Text>
         <Text
           style={{
@@ -292,7 +293,7 @@ const Profile = ({navigation}) => {
             fontSize: 17,
             fontWeight: 'bold',
           }}>
-          A mantra goes here
+          Application Developer
         </Text>
       </View>
       <View
@@ -480,7 +481,7 @@ const Profile = ({navigation}) => {
             marginHorizontal: 20,
             alignItems: 'center',
           }}>
-          <TouchableOpacity 
+          <TouchableOpacity
             onPress={() => {
               openImagePickerWithSheetClose();
             }}
