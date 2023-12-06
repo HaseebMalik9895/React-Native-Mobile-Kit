@@ -10,6 +10,8 @@ import React, {useState} from 'react';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import database from '@react-native-firebase/database';
 import ImagePicker from 'react-native-image-crop-picker';
+import storage from '@react-native-firebase/storage';
+import auth from '@react-native-firebase/auth';
 
 const Posts = ({navigation}) => {
   const [postText, setPostText] = useState('');
@@ -17,37 +19,57 @@ const Posts = ({navigation}) => {
   const [image, setImage] = useState();
 
   const handlePost = async () => {
-    try {
+    // Check if an image is selected
+    if (image) {
       setLoading(true);
-      // Assuming you have a Firebase database reference
-      const postsRef = database().ref('posts');
 
-      // Push the new post to the 'posts' collection
-      await postsRef.push({
-        text: postText,
+      try {
+        const imageName = Date.now() +'.jpg' 
+        // Create a reference to the storage path
+        const storageRef = storage().ref(`images/${imageName}`);
 
-        // Add other data related to the post (user information, timestamp, etc.)
-      });
+        // Upload the image to Firebase Storage
+        await storageRef.putFile(image.uri);
 
-      // Navigate to the home screen or do any other action after posting
-      navigation.goBack();
-    } catch (error) {
-      console.log('Error posting:', error);
+        // Get the download URL of the uploaded image
+        const downloadURL = await storageRef.getDownloadURL();
+
+        // Now you can use the 'downloadURL' to store it in the database or perform any other actions
+        console.log('Image uploaded successfully. Download URL:', downloadURL);
+      const userId = auth().currentUser.uid 
+         
+        database().ref(`users/${userId}/post`).push({
+          postCaption:postText,
+          image:imageName,
+          imageUrl:downloadURL,
+        })
+
+        // Reset the state and loading indicator
+        setImage(null);
+        setPostText('');
+        navigation.navigate('Feed')
+        setLoading(false);
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        setLoading(false);
+      }
+    } else {
+      // Handle the case when no image is selected
+
+      console.warn('Please select an image before posting.');
     }
   };
-
-  const openImagePicker = () => {
+  const openImagePicker  = async() => {
     ImagePicker.openCamera({
       width: 300,
       height: 300,
       // cropping: true, // Enable cropping
       cropperCircleOverlay: false, // Set to true if you want a circular overlay
       cropperToolbarTitle: 'Crop Image', // Title for the cropping screen
-      includeBase64: true, // Set to true if you want to include base64-encoded image data
     })
       .then(response => {
         if (response.path) {
-          setImage({uri: response.path});
+       setImage({uri: response.path});
         }
       })
       .catch(error => {
@@ -149,7 +171,7 @@ const Posts = ({navigation}) => {
             }}
           />
           <Image
-            source={image?image : null}
+            source={image ? image : null}
             resizeMode={'cover'}
             style={{
               height: '89%',
@@ -194,7 +216,7 @@ const Posts = ({navigation}) => {
               borderWidth: 0.5,
               borderColor: '#5DB075',
               borderRadius: 10,
-              marginLeft:5,
+              marginLeft: 5,
             }}>
             <Text
               style={{

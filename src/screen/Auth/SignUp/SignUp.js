@@ -34,6 +34,7 @@ const SignUp = ({navigation}) => {
             const user = usercredential.user;
             const userUid = user.uid;
             userRef.child(userUid).set({
+              name:name,
               email: email,
               password: password,
             });

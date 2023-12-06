@@ -4,7 +4,7 @@ import Like from 'react-native-vector-icons/AntDesign';
 import Comment from 'react-native-vector-icons/FontAwesome';
 import Share from 'react-native-vector-icons/Ionicons';
 
-const FeedsCard = () => {
+const FeedsCard = ({source, name,caption}) => {
   const [like, setLike] = useState(true);
   const [comment, setComment] = useState(true);
   const [share, setShare] = useState(true);
@@ -50,7 +50,7 @@ const FeedsCard = () => {
               fontWeight: 'bold',
               marginBottom: 5,
             }}>
-            Haseeb Bin Umar
+           {name}
           </Text>
           <Text
             style={{
@@ -80,7 +80,13 @@ const FeedsCard = () => {
           backgroundColor: 'white',
           height: 400,
           width: '100%',
-        }}></View>
+        }}>
+          {caption &&<Text
+          style={{
+            fontSize:18,
+            color:'black',
+          }}>{caption}</Text>}
+          <Image resizeMode='contain' style={{height:'90%', width:'90%',alignSelf:'center',marginVertical:10,}} source={{uri: source}}/></View>
       <View
         style={{
           backgroundColor: 'white',

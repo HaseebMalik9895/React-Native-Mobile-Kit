@@ -9,7 +9,7 @@ const MainStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="App"
+        initialRouteName="Auth"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="App" component={AppStack} />
         <Stack.Screen name="Auth" component={AuthStack} />
