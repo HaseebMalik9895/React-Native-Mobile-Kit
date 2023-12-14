@@ -4,7 +4,14 @@ import Like from 'react-native-vector-icons/AntDesign';
 import Comment from 'react-native-vector-icons/FontAwesome';
 import Share from 'react-native-vector-icons/Ionicons';
 
-const FeedsCard = ({source, name,caption}) => {
+const FeedsCard = ({
+  source,
+  name,
+  onpress,
+  caption,
+  profilePic
+  
+}) => {
   const [like, setLike] = useState(true);
   const [comment, setComment] = useState(true);
   const [share, setShare] = useState(true);
@@ -23,22 +30,24 @@ const FeedsCard = ({source, name,caption}) => {
           borderBottomWidth: 0.9,
           borderColor: 'grey',
         }}>
-        <View
-          style={{
-            width: '15%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Image
-            source={require('../../assets/images/person.png')}
+          <View
             style={{
-              height: 60,
-              width: 60,
-              resizeMode: 'center',
-              borderRadius: 60,
-            }}
-          />
-        </View>
+              width: '15%',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Image
+              source={{uri: profilePic}}
+              style={{
+                height: 50,
+                width: 50,
+                resizeMode: 'center',
+                borderRadius: 60,
+              }}
+            />
+          </View>
+       
+
         <View
           style={{
             width: '70%',
@@ -50,7 +59,7 @@ const FeedsCard = ({source, name,caption}) => {
               fontWeight: 'bold',
               marginBottom: 5,
             }}>
-           {name}
+            {name}
           </Text>
           <Text
             style={{
@@ -60,7 +69,7 @@ const FeedsCard = ({source, name,caption}) => {
             10 min ago
           </Text>
         </View>
-
+        <Like onPress={onpress} name={'like1'} size={30} color={'grey'} />
         <View
           style={{
             height: '100%',
@@ -70,7 +79,7 @@ const FeedsCard = ({source, name,caption}) => {
             onPress={() => {
               setFollow(!follow);
             }}
-            style={{fontSize: 14, color: '#5DB075',fontWeight:'700'}}>
+            style={{fontSize: 14, color: '#5DB075', fontWeight: '700'}}>
             {follow ? 'Follow' : 'Unfollow'}
           </Text>
         </View>
@@ -81,12 +90,26 @@ const FeedsCard = ({source, name,caption}) => {
           height: 400,
           width: '100%',
         }}>
-          {caption &&<Text
+        {caption && (
+          <Text
+            style={{
+              fontSize: 18,
+              color: 'black',
+            }}>
+            {caption}
+          </Text>
+        )}
+        <Image
+          resizeMode="contain"
           style={{
-            fontSize:18,
-            color:'black',
-          }}>{caption}</Text>}
-          <Image resizeMode='contain' style={{height:'90%', width:'90%',alignSelf:'center',marginVertical:10,}} source={{uri: source}}/></View>
+            height: '90%',
+            width: '90%',
+            alignSelf: 'center',
+            marginVertical: 10,
+          }}
+          source={{uri: source}}
+        />
+      </View>
       <View
         style={{
           backgroundColor: 'white',
@@ -113,7 +136,7 @@ const FeedsCard = ({source, name,caption}) => {
           <Like
             name={like ? 'like2' : 'like1'}
             size={25}
-            color={like ? 'grey' : 'red'}
+            color={like ? 'grey' : '#5DB075'}
           />
           <Text
             style={{

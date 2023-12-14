@@ -15,6 +15,9 @@ import Galleryimage from 'react-native-vector-icons/Entypo';
 import Galleryvideo from 'react-native-vector-icons/Ionicons';
 import ImagePicker, {openPicker} from 'react-native-image-crop-picker';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import storage from '@react-native-firebase/storage';
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 
 const posts = [
   {
@@ -173,21 +176,31 @@ const Profile = ({navigation}) => {
   }, []);
 
   const [button, setButton] = useState('post');
-  const [image, setImage] = useState(
-    require('../../../assets/images/Tshirt.png'),
-  );
+  const [image, setImage] = useState('');
 
-  const openImagePicker = () => {
+  const openImagePicker = async () => {
     ImagePicker.openCamera({
       // ImagePicker.openPicker({
       width: 300,
       height: 400,
       cropping: true,
     })
-      .then(response => {
+      .then(async response => {
         if (response.path) {
           setImage({uri: response.path});
+          const path = response.path;
+          const imageName = Date.now() + '.jpg';
+          const storageRef = storage().ref(`profiles/${imageName}`);
+          await storageRef.putFile(path);
+          const url = await storageRef.getDownloadURL();
+          const userId = auth().currentUser.uid;
+
+          const userRef = database().ref('users').child(userId);
+          userRef.update({
+            profileimg: url,
+          });
         }
+        console.log(url);
       })
       .catch(error => {
         console.log(error);
@@ -199,13 +212,22 @@ const Profile = ({navigation}) => {
       height: 400,
       cropping: true,
     })
-      .then(response => {
-        if (!response.didCancel) {
-          // User selected an image from the gallery
-          if (response.path) {
-            setImage({uri: response.path});
-          }
+      .then(async response => {
+        if (response.path) {
+          setImage({uri: response.path});
+          const path = response.path;
+          const imageName = Date.now() + '.jpg';
+          const storageRef = storage().ref(`profiles/${imageName}`);
+          await storageRef.putFile(path);
+          const url = await storageRef.getDownloadURL();
+          const userId = auth().currentUser.uid;
+
+          const userRef = database().ref('users').child(userId);
+          userRef.update({
+            profileimg: url,
+          });
         }
+        console.log(url);
       })
       .catch(error => {
         console.log(error);
@@ -239,9 +261,7 @@ const Profile = ({navigation}) => {
             position: 'relative',
           }}>
           <Image
-            source={
-              image ? image : require('../../../assets/images/person.png')
-            }
+            source={image}
             resizeMode={'cover'}
             style={{
               height: 110,
@@ -250,7 +270,7 @@ const Profile = ({navigation}) => {
               borderRadius: 60,
               borderColor: 'white',
               borderWidth: 2,
-              backgroundColor:'white'
+              backgroundColor: 'white',
             }}
           />
           <TouchableOpacity
